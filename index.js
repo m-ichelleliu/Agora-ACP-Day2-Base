@@ -4,6 +4,7 @@ const client = AgoraRTC.createClient({
 });
 
 var personCount = 0;
+console.log("hi");
 
 $("#hi").submit(async function (e) {
     e.preventDefault();
