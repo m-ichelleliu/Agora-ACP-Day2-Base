@@ -3,6 +3,8 @@ const client = AgoraRTC.createClient({
     mode: "rtc",
 });
 
+var personCount = 0;
+
 $("#hi").submit(async function (e) {
     e.preventDefault();
     console.log("b");
@@ -19,10 +21,10 @@ $("#hi").submit(async function (e) {
     cameraTrack.play("local-player");
 });
 
-
 client.on("user-published", async (user, mediaType) => {
     // Initiate the subscription
     await client.subscribe(user, mediaType);
+    personCount += 1;
   
     // If the subscribed track is an audio track
     if (mediaType === "audio") {
@@ -33,8 +35,21 @@ client.on("user-published", async (user, mediaType) => {
       const videoTrack = user.videoTrack;
       // Play the video
       videoTrack.play("remote-players");
+        const remotePlayer=$(`
+            <div id="player-${personCount}" class="player"></div>
+        `)
+        $("#remote-player").append(remotePlayer);
+        user.videoTrack.play(`player-${personCount}`);
+    }
     }
 });
+
+client.on("user-left", async => {
+    await client.unsubscribe(user, "video");
+    await client.unsubscribe(user, "audio");
+});
+
+
 
 /*
 await client.leave();
