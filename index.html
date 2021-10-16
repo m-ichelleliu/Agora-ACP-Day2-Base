@@ -4,32 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Karaokenator</title>
+    <title>YouTube with Friends!</title>
     <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
 </head>
 
 <body>
     <!-- Title -->
     <div>
-        <p class="header">Welcome to my app!</p> 
+        <p class="header">YouTube with Friends!</p> 
     </div>
 
     <!-- Controls -->
     <div>
-        <form id="hi">
+        <form id="hi" style="margin:20px">
             <label>Room Name: </label>
             <input id="room" type="text" required style="width: 500px;">
-            <button id="join" type="submit">Join</button>
-            <button id="leave" type="button" disabled>Leave</button>
-            <button id="mic" type="button" disabled>Mute Audio</button>
-            <button id="vid" type="button" disabled>Mute Video</button>
-            <button id="screen" type="button" disabled>Share Screen</button>
+            <button id="join" type="submit" class="button">Join</button>
+            <button id="leave" type="button" class="button" disabled>Leave</button>
+            <button id="mic" type="button" class="button" disabled>Mute Audio</button>
+            <button id="vid" type="button" class="button" disabled>Mute Video</button>
+            <button id="screen" type="button" class="button" disabled>Share Screen</button>
+        </form>
+        <form id="vid-request" style="margin:20px">
+            <label>YouTube Video ID: </label>
+            <input id="video-id" type="text" required style="width: 500px;">
+            <button type="submit" class="button">Enter</button>
         </form>
     </div>
     
     <!-- Video Players -->
-    <div class="grid-container" id="video-players">
-        <div id="local-player" class="grid-item-1" class="player"></div>
+    <div class="grid-container" id="video-players" style="margin:20px">
+        <div id="youtube" class="grid-item-1">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" 
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+            gyroscope; picture-in-picture" allowfullscreen width="100%" height="100%"></iframe>
+        </div> 
+        <div id="local-player" class="player"></div>
     </div>
 
     <!-- Scripts -->

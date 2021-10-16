@@ -87,18 +87,25 @@ async function leaveUser() {
     $(`#player-${uid}`).remove();
 };
 
+$("#vid-request").submit(async function (e) {
+    e.preventDefault();
+    const id = $("#video-id").val();
+    console.log(id);
+    $("#youtube").html(`<iframe src="https://www.youtube.com/embed/${id}" title="YouTube video player" 
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+            gyroscope; picture-in-picture" allowfullscreen width="100%" height="100%"></iframe>`)
+});
+
 $("#leave").click(async function () {
-    console.log("am leaving");
-    $("#mic-btn").attr("disabled", true);
-    $("#vid-btn").attr("disabled", true);
+    $("#mic").attr("disabled", true);
+    $("#vid").attr("disabled", true);
     $("#leave").attr("disabled", true);
     $("#join").attr("disabled", false);
     $("#screen").attr("disabled", true);
-    $("#video-players").html(`<div id="local-player" class="grid-item-1" class="player"></div>`);
+    $("#video-players").html(`<div id="local-player" class="player"></div>`);
     await client.unpublish();
     await client.leave();
 });
-
 
 $("#mic").click(async function () {
     if (!mic_muted) {
